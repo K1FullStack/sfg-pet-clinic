@@ -5,7 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/** Created by jt on 7/21/18. */
 public abstract class AbstractMapService<T, ID> {
+
   protected Map<ID, T> map = new HashMap<>();
 
   Set<T> findAll() {
@@ -18,6 +20,7 @@ public abstract class AbstractMapService<T, ID> {
 
   T save(ID id, T object) {
     map.put(id, object);
+
     return object;
   }
 
@@ -25,7 +28,7 @@ public abstract class AbstractMapService<T, ID> {
     map.remove(id);
   }
 
-  void deleteByObject(T object) {
-    map.entrySet().removeIf((Map.Entry<ID, T> entry) -> entry.getValue().equals(object));
+  void delete(T object) {
+    map.entrySet().removeIf(entry -> entry.getValue().equals(object));
   }
 }
